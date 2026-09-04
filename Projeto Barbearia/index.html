@@ -17,7 +17,7 @@
     }
     header{
         color: rgb(0, 0, 0);
-        background-color: antiquewhite;
+        background-color: rgba(250, 235, 215, 0.884);
         text-align: center;
 
         padding: 20px;
@@ -32,10 +32,24 @@
 
     .cards {
         color: black;
-        background-color: antiquewhite; 
+        background-color: antiquewhite;
+        border: 3px solid rgba(78, 60, 60, 0.247);
+        border-radius: 20px;
+        box-shadow: 5px 5px rgba(0, 0, 0, 0.5);
+        
         width: 250px; 
         height: 380px;
+
         margin: 20px;
+        padding: 20px;
+
+        text-align: center;
+
+        transition: scale 0.2s linear;
+    }
+
+    .cards:hover{
+        scale: 1.01;
     }
 
 </style>
