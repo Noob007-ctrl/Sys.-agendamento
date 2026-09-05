@@ -9,14 +9,14 @@
     
     body{
     background-color: rgb(66, 44, 44);
-    color: rgb(253, 229, 229);
+    color: rgb(247, 242, 242);
     font-family: Montserrat;
     
     padding-top: 128px;
 
     }
     header{
-        color: rgb(0, 0, 0);
+        color: rgb(240, 237, 237);
         background-color: rgba(250, 235, 215, 0.884);
         text-align: center;
         padding: 20px;
@@ -122,6 +122,26 @@
     </div>
    
  <script>
+    const botoes = document.querySelectorAll ('button');
+    botoes.forEach (botao =>{
+        botao.addEventListener ('click', () => {
+         const horario = botao.previousElementSibling.textContent.replace('→ ', '');
+         const card = botao.closest('.cards');
+         const barbeiro = card.querySelector ('h3').textContent.replace(':', '');
+         const nomeCliente = prompt("Qual é o seu nome?");
+         if (nomeCliente){
+            alert (`Agendamento confirmado ${nomeCliente}! Seu horário com ${barbeiro} será às ${horario}.`);
+         }else{
+          alert (`Agendamento confirmado! Seu horário com ${barbeiro} será às ${horario}.`);
+         }
+             botao.textContent = "Agendado!";
+             botao.disabled = true;
+             botao.style.backgroundColor = "#27ae60";
+             botao.style.cursor = "not-allowed";
+        });   
+    });
+
+
 
  </script>   
 </body>
