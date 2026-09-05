@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendamento</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+    
+    body{
+    background-color: rgb(66, 44, 44);
+    color: rgb(247, 242, 242);
+    font-family: Montserrat;
+    
+    padding-top: 128px;
+
+    }
+    header{
+        color: rgb(240, 237, 237);
+        background-color: rgba(250, 235, 215, 0.884);
+        text-align: center;
+        padding: 20px;
+        position: fixed;
+        left: 50px;
+        border-radius: 20px;
+        top: -20px;
+        width: 90%;
+        margin: auto;
+    }
+    div#div-txt{
+        text-align: center;
+        color: black;
+        background-color: antiquewhite;
+        border-radius: 20px;
+        width: 380px;
+        margin: auto;
+    }
+    div#suport-cards{
+        display: flex;
+    }
+
+    .cards {
+        color: black;
+        background-color: antiquewhite;
+        border: 3px solid rgba(78, 60, 60, 0.247);
+        border-radius: 20px;
+        box-shadow: 5px 5px rgba(0, 0, 0, 0.5);
+        
+        width: 250px; 
+        height: 380px;
+
+        margin: auto;
+        padding: 20px;
+
+        text-align: center;
+
+        transition: scale 0.2s linear;
+    }
+
+    .cards:hover{
+        scale: 1.01;
+    }
+    button{
+        color: aliceblue;
+        background-color: rgb(43, 36, 36);
+        border-radius: 10px;
+        cursor: pointer;
+        transition: scale 0.15s linear;
+    }
+    button:hover {
+        scale: 0.95;
+    }
+    
+</style>
+</head>
+<body>
+    <header>
+        <h1> Faça seu Agendamento abaixo:</h1>
+    </header>
+    <div id="div-txt"><h2>Barbeiros/horários disponíveis:</h2></div>
+
+    <div id="suport-cards">
+         <div class="cards">
+            <h3>Lucas:</h3>
+            <p>Segunda e Terça-Feira:</p>
+            <p>→ 10:30</p>
+            <button>Selecionar</button>
+            <p>→ 15:30</p>
+            <button>Selecionar</button>
+            <p>→ 19:00</p>
+            <button>Selecionar</button>
+            <p>→ 21:30</p>
+            <button>Selecionar</button>
+
+        </div>
+
+        <div class="cards">
+            <h3>Valdir</h3>
+            <p>Sexta-Feira e Sábado:</p>
+            <p>→ 07:35</p>
+            <button class="botao-transicao">Selecionar</button>
+            <p>→ 12:45</p>
+            <button>Selecionar</button>
+            <p>→ 18:30</p>
+            <button>Selecionar</button>
+            <p>→ 20:30</p>
+            <button>Selecionar</button>
+            
+        </div>
+        <div class="cards">
+            <h3>Gabriel</h3>
+            <p>Sexta-Feira e Sábado:</p>
+            <p>→ 08:30</p>
+            <button>Selecionar</button>
+            <p>→ 14:45</p>
+            <button>Selecionar</button>
+            <p>→ 18:30</p>
+            <button>Selecionar</button>
+            <p>→ 20:30</p>
+            <button>Selecionar</button>
+        </div>
+    </div>
+   
+ <script>
+    const botoes = document.querySelectorAll ('button');
+    botoes.forEach (botao =>{
+        botao.addEventListener ('click', () => {
+         const horario = botao.previousElementSibling.textContent.replace('→ ', '');
+         const card = botao.closest('.cards');
+         const barbeiro = card.querySelector ('h3').textContent.replace(':', '');
+         const nomeCliente = prompt("Qual é o seu nome?");
+         if (nomeCliente){
+            alert (`Agendamento confirmado ${nomeCliente}! Seu horário com ${barbeiro} será às ${horario}.`);
+         }else{
+          alert (`Agendamento confirmado! Seu horário com ${barbeiro} será às ${horario}.`);
+         }
+             botao.textContent = "Agendado!";
+             botao.disabled = true;
+             botao.style.backgroundColor = "#27ae60";
+             botao.style.cursor = "not-allowed";
+        });   
+    });
+
+
+
+ </script>   
+</body>
+
+</html>
