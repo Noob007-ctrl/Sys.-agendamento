@@ -146,32 +146,80 @@
         }
     }
 
-    const lucas = new Barbeiro("lucas", ["seg", "ter"], ["10:30", "15:30", "19:00", "21:00"]);
+    const lucas = new Barbeiro("Lucas", ["seg", "ter"], ["10:30", "15:30", "19:00", "21:30"]);
     const valdir = new Barbeiro("Valdir", ["sex", "sab"], ["07:35", "12:45", "18:30", "20:30"]);
     const gabriel = new Barbeiro("Gabriel", ["sex", "sab"], ["08:30", "14:45", "18:30", "20:30"]);
 
     const botoes = document.querySelectorAll ('button');
 
-    let todosClientesAgendados;
+    let todosClientesAgendados = [];
+
+    function qualBarbeiro(nomeBarbeiro) {
+        if (nomeBarbeiro === lucas.nome) {
+            return lucas;
+        }
+
+        if (nomeBarbeiro === valdir.nome) {
+            return valdir;
+        }
+
+        if (nomeBarbeiro === gabriel.nome) {
+            return gabriel;
+        }
+
+        return null;
+    }
+
+    function clienteInseriuNome(nome)
+    {
+        if (nome === null || nome.trim() === "")
+        {
+            return false;
+        }
+        
+        return true;
+    }
+
+    function diaDaSemanaECorreto(diaDaSemana, barbeiro)
+    {
+        if (barbeiro.diasDaSemana.includes(diaDaSemana))
+        {
+            return true;
+        }
+        
+        return false
+    }
+
+    let contadorId = 0;
+
+    function gerarID(){
+
+        contadorId++;
+        return contadorID.toString().padStart(4, "0");
+    }
 
     botoes.forEach (botao =>{
         botao.addEventListener ('click', () => {
 
-         const horario = botao.previousElementSibling.textContent.replace('→ ', '');
-         const card = botao.closest('.cards');
-         const barbeiro = card.querySelector ('h3').textContent.replace(':', '');
-         const nomeAtualCliente = prompt("Qual é o seu nome?");
+        const horario = botao.previousElementSibling.textContent.replace('→ ', '');
+        const card = botao.closest('.cards');
+        const barbeiro = card.querySelector ('h3').textContent.replace(':', '');
+        const barbeiroEscolhido = qualBarbeiro(barbeiro);
 
-         if (nomeAtualCliente === null || nomeAtualCliente.trim() === "")
-         {
-            alert(`Cliente não inseriu um nome`);
-            return;
-         }
-         else
-         {
-            alert (`Agendamento confirmado ${nomeAtualCliente}! Seu horário com ${barbeiro} será às ${horario}.`);
+        const nomeAtualCliente = prompt("Qual é o seu nome?");
+        const diaDaSemana = prompt("Qual dia da semana? (seg - sab)").toLowerCase()
+
+        if (clienteInseriuNome(nomeAtualCliente) && diaDaSemanaECorreto(diaDaSemana, barbeiroEscolhido))
+        {
+            alert (`Agendamento confirmado ${nomeAtualCliente}! Seu horário com ${barbeiro} será às ${horario}, ${diaDaSemana}.`);
             todosClientesAgendados.push(nomeAtualCliente);
-         }
+        }
+        else
+        {
+            alert(`Cliente não inseriu um nome ou o dia da semana é invalido`);
+            return;
+        }
+
 
         botao.textContent = "Agendado!";
         botao.disabled = true;
