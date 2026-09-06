@@ -1,253 +1,343 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agendamento</title>
-<style>
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
-    
-    body{
-    background-color: rgb(66, 44, 44);
-    color: rgb(247, 242, 242);
-    font-family: Montserrat;
-    
-    padding-top: 128px;
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 
+    * {
+        box-sizing: border-box;
     }
 
-    header{
-        color: rgb(240, 237, 237);
-        background-color: rgba(250, 235, 215, 0.884);
+    body {
+        margin: 0;
+        background: linear-gradient(135deg, #3d2924, #6f4e37);
+        color: #f7f2f2;
+        font-family: 'Montserrat', sans-serif;
+        padding-top: 130px;
+        min-height: 100vh;
+    }
+
+    header {
+        color: #3d2924;
+        background: rgba(250, 235, 215, 0.96);
         text-align: center;
-        padding: 20px;
+        padding: 18px 30px;
         position: fixed;
-        left: 50px;
-        border-radius: 20px;
-        top: -20px;
+        left: 5%;
+        padding: 30px;
+        top: -18px;
         width: 90%;
-        margin: auto;
+        border-radius: 18px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+        z-index: 10;
     }
 
-    div#div-txt{
+    header h1 {
+        margin: 0;
+        font-size: 28px;
+        font-weight: 700;
+    }
+
+    #div-txt {
         text-align: center;
-        color: black;
-        background-color: antiquewhite;
-        border-radius: 20px;
-        width: 380px;
-        margin: auto;
+        color: #3d2924;
+        background-color: #faebd7;
+        border-radius: 15px;
+        width: fit-content;
+        margin: 0 auto 45px;
+        padding: 5px 30px;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
     }
 
-    div#suport-cards{
+    #div-txt h2 {
+        font-size: 20px;
+        margin: 10px 0;
+    }
+
+    #suport-cards {
         display: flex;
+        justify-content: center;
+        align-items: stretch;
+        gap: 30px;
+        padding: 0 30px 50px;
     }
 
     .cards {
-        color: black;
-        background-color: antiquewhite;
-        border: 3px solid rgba(78, 60, 60, 0.247);
-        border-radius: 20px;
-        box-shadow: 5px 5px rgba(0, 0, 0, 0.5);
-        font-weight: 600;
-        
-        width: 250px; 
-        height: 380px;
+        color: #2e211d;
+        background: #faebd7;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        border-radius: 22px;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
 
-        margin: auto;
-        padding: 20px;
+        width: 280px;
+        min-height: 400px;
 
+        padding: 25px;
         text-align: center;
 
-        transition: scale 0.2s linear;
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
 
-    .cards:hover{
-        scale: 1.01;
+    .cards:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 18px 35px rgba(0, 0, 0, 0.35);
     }
 
+    .cards h3 {
+        font-size: 23px;
+        margin: 0 0 8px;
+        color: #5b3b2c;
+    }
+
+    .cards > p {
+        color: #76584a;
+        font-size: 14px;
+        margin: 0 0 25px;
+        font-weight: 500;
+    }
+
+    .cardDoCard {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        margin: 14px 0;
+        padding: 10px 5px;
+
+        border-bottom: 1px solid rgba(111, 78, 55, 0.2);
+    }
+
+    .cardDoCard p {
+        margin: 0;
+        font-size: 15px;
+        font-weight: 600;
+    }
 
     button {
-        background-color: #6f4e37;
+        background: #6f4e37;
         color: white;
+
         border: none;
-        padding: 5px;
+        padding: 8px 12px;
+
         border-radius: 8px;
+
         font-family: inherit;
+        font-size: 12px;
         font-weight: 600;
+
         cursor: pointer;
-        transition: 0.2s;
+
+        transition: background 0.2s ease,
+                    transform 0.2s ease,
+                    box-shadow 0.2s ease;
     }
 
     button:hover {
-        background-color: #543925;
+        background: #543925;
         transform: translateY(-2px);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
     }
-    
+
+    button:disabled {
+        cursor: not-allowed;
+    }
 </style>
 </head>
+
 <body>
 
     <header>
         <h1> Faça seu Agendamento abaixo:</h1>
     </header>
 
-    <div id="div-txt"><h2>Barbeiros/horários disponíveis:</h2></div>
+    <div id="div-txt">
+        <h2>Barbeiros/horários disponíveis:</h2>
+    </div>
 
     <div id="suport-cards">
 
-         <div class="cards">
+        <div class="cards">
 
             <h3>Lucas:</h3>
             <p>Segunda e Terça-Feira:</p>
-            <p>→ 10:30</p>
-            <button>Selecionar</button>
-            <p>→ 15:30</p>
-            <button>Selecionar</button>
-            <p>→ 19:00</p>
-            <button>Selecionar</button>
-            <p>→ 21:30</p>
-            <button>Selecionar</button>
+
+            <div class="cardDoCard">
+                <p>→ 10:30</p>
+                <button>Selecionar</button>
+            </div>
+            <div class="cardDoCard">
+                <p>→ 15:30</p>
+                <button>Selecionar</button>
+            </div>
+            <div class="cardDoCard">
+                <p>→ 19:00</p>
+                <button>Selecionar</button>
+            </div>
+            <div class="cardDoCard">
+                <p>→ 21:30</p>
+                <button>Selecionar</button>
+            </div>
+
 
         </div>
 
         <div class="cards">
-
-            <h3>Valdir</h3>
+            <h3>Valdir:</h3>
             <p>Sexta-Feira e Sábado:</p>
-            <p>→ 07:35</p>
-            <button class="botao-transicao">Selecionar</button>
-            <p>→ 12:45</p>
-            <button>Selecionar</button>
-            <p>→ 18:30</p>
-            <button>Selecionar</button>
-            <p>→ 20:30</p>
-            <button>Selecionar</button>
-            
+
+            <div class="cardDoCard">
+                <p>→ 07:35</p>
+                <button>Selecionar</button>
+            </div>
+
+            <div class="cardDoCard">
+                <p>→ 12:45</p>
+                <button>Selecionar</button>
+            </div>
+
+            <div class="cardDoCard">
+                <p>→ 18:30</p>
+                <button>Selecionar</button>
+            </div>
+
+            <div class="cardDoCard">
+                <p>→ 20:30</p>
+                <button>Selecionar</button>
+            </div>
         </div>
 
         <div class="cards">
-
-            <h3>Gabriel</h3>
+            <h3>Gabriel:</h3>
             <p>Sexta-Feira e Sábado:</p>
-            <p>→ 08:30</p>
-            <button>Selecionar</button>
-            <p>→ 14:45</p>
-            <button>Selecionar</button>
-            <p>→ 18:30</p>
-            <button>Selecionar</button>
-            <p>→ 20:30</p>
-            <button>Selecionar</button>
 
+            <div class="cardDoCard">
+                <p>→ 08:30</p>
+                <button>Selecionar</button>
+            </div>
+
+            <div class="cardDoCard">
+                <p>→ 14:45</p>
+                <button>Selecionar</button>
+            </div>
+
+            <div class="cardDoCard">
+                <p>→ 18:30</p>
+                <button>Selecionar</button>
+            </div>
+
+            <div class="cardDoCard">
+                <p>→ 20:30</p>
+                <button>Selecionar</button>
+            </div>
         </div>
     </div>
-   
- <script>
 
-    console.log("Luiz, viaja em mim não sô")
-    
-    // Classes  
-    class Barbeiro{
-        constructor(nome, diasDaSemana, horario)
-        {
-            this.nome = nome;
-            this.diasDaSemana = diasDaSemana;
-            this.horario = horario;
-        }
-    }
+    <script>
 
-    let contadorId = 0;
+        console.log("Luiz, viaja em mim não sô")
 
-    function gerarId(){
-        contadorId++;
-        return contadorId.toString().padStart(4, "0");
-    }
-
-    class Cliente{
-        constructor (nome){
-            this.nome = nome
-            this.id = gerarId()
-        }
-    }
-
-    const lucas = new Barbeiro("Lucas", ["seg", "ter"], ["10:30", "15:30", "19:00", "21:30"]);
-    const valdir = new Barbeiro("Valdir", ["sex", "sab"], ["07:35", "12:45", "18:30", "20:30"]);
-    const gabriel = new Barbeiro("Gabriel", ["sex", "sab"], ["08:30", "14:45", "18:30", "20:30"]);
-
-    const botoes = document.querySelectorAll ('button');
-
-    let todosClientesAgendados = [];
-
-    function qualBarbeiro(nomeBarbeiro) {
-        if (nomeBarbeiro === lucas.nome) {
-            return lucas;
+        // Classes  
+        class Barbeiro {
+            constructor(nome, diasDaSemana, horario) {
+                this.nome = nome;
+                this.diasDaSemana = diasDaSemana;
+                this.horario = horario;
+            }
         }
 
-        if (nomeBarbeiro === valdir.nome) {
-            return valdir;
+        let contadorId = 0;
+
+        function gerarId() {
+            contadorId++;
+            return contadorId.toString().padStart(4, "0");
         }
 
-        if (nomeBarbeiro === gabriel.nome) {
-            return gabriel;
+        class Cliente {
+            constructor(nome) {
+                this.nome = nome
+                this.id = gerarId()
+            }
         }
 
-        return null;
-    }
+        const lucas = new Barbeiro("Lucas", ["seg", "ter"], ["10:30", "15:30", "19:00", "21:30"]);
+        const valdir = new Barbeiro("Valdir", ["sex", "sab"], ["07:35", "12:45", "18:30", "20:30"]);
+        const gabriel = new Barbeiro("Gabriel", ["sex", "sab"], ["08:30", "14:45", "18:30", "20:30"]);
 
-    function clienteInseriuNome(nome)
-    {
-        if (nome === null || nome.trim() === "")
-        {
-            return false;
+        const botoes = document.querySelectorAll('button');
+
+        let todosClientesAgendados = [];
+
+        function qualBarbeiro(nomeBarbeiro) {
+            if (nomeBarbeiro === lucas.nome) {
+                return lucas;
+            }
+
+            if (nomeBarbeiro === valdir.nome) {
+                return valdir;
+            }
+
+            if (nomeBarbeiro === gabriel.nome) {
+                return gabriel;
+            }
+
+            return null;
         }
-        
-        return true;
-    }
 
-    function diaDaSemanaECorreto(diaDaSemana, barbeiro)
-    {
-        if (barbeiro.diasDaSemana.includes(diaDaSemana))
-        {
+        function clienteInseriuNome(nome) {
+            if (nome === null || nome.trim() === "") {
+                return false;
+            }
+
             return true;
         }
-        
-        return false
-    }
 
-    botoes.forEach (botao =>{
-        botao.addEventListener ('click', () => {
+        function diaDaSemanaECorreto(diaDaSemana, barbeiro) {
+            if (barbeiro.diasDaSemana.includes(diaDaSemana)) {
+                return true;
+            }
 
-        const horario = botao.previousElementSibling.textContent.replace('→ ', '');
-        const card = botao.closest('.cards');
-        const barbeiro = card.querySelector ('h3').textContent.replace(':', '');
-        const barbeiroEscolhido = qualBarbeiro(barbeiro);
-
-        const nomeAtualCliente = prompt("Qual é o seu nome?");
-        const diaDaSemana = prompt("Qual dia da semana? (seg - sab)").toLowerCase()
-
-        if (clienteInseriuNome(nomeAtualCliente) && diaDaSemanaECorreto(diaDaSemana, barbeiroEscolhido))
-        {
-            const cliente = new Cliente(nomeAtualCliente);
-            todosClientesAgendados.push(cliente);
-
-            alert (`Agendamento confirmado ${cliente.nome}! Seu horário com ${barbeiro} será às ${horario}, ${diaDaSemana}. Seu código é: ${cliente.id}`);
-     
-        }
-        else
-        {
-            alert(`Cliente não inseriu um nome ou o dia da semana é invalido`);
-            return;
+            return false
         }
 
+        botoes.forEach(botao => {
+            botao.addEventListener('click', () => {
 
-        botao.textContent = "Agendado!";
-        botao.disabled = true;
-        botao.style.backgroundColor = "#27ae60";
-        botao.style.cursor = "not-allowed";
+                const horario = botao.previousElementSibling.textContent.replace('→ ', '');
+                const card = botao.closest('.cards');
+                const barbeiro = card.querySelector('h3').textContent.replace(':', '');
+                const barbeiroEscolhido = qualBarbeiro(barbeiro);
 
-        });   
-    });
+                const nomeAtualCliente = prompt("Qual é o seu nome?");
+                const diaDaSemana = prompt("Qual dia da semana? (seg - sab)").toLowerCase()
 
-    
- </script>   
+                if (clienteInseriuNome(nomeAtualCliente) && diaDaSemanaECorreto(diaDaSemana, barbeiroEscolhido)) {
+                    const cliente = new Cliente(nomeAtualCliente);
+                    todosClientesAgendados.push(cliente);
+
+                    alert(`Agendamento confirmado ${cliente.nome}! Seu horário com ${barbeiro} será às ${horario}, ${diaDaSemana}. Seu código é: ${cliente.id}`);
+
+                }
+                else {
+                    alert(`Cliente não inseriu um nome ou o dia da semana é invalido`);
+                    return;
+                }
+
+
+                botao.textContent = "Agendado!";
+                botao.disabled = true;
+                botao.style.backgroundColor = "#27ae60";
+                botao.style.cursor = "not-allowed";
+
+            });
+        });
+
+
+    </script>
 </body>
+
 </html>
