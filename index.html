@@ -136,10 +136,20 @@
    
  <script>
 
+    class Barbeiro{
+        constructor(nome, diasDaSemana, horario)
+        {
+            this.nome = nome;
+            this.diasDaSemana = diasDaSemana;
+            this.horario = horario
+        }
+    }
+    
     const botoes = document.querySelectorAll ('button');
 
     botoes.forEach (botao =>{
         botao.addEventListener ('click', () => {
+
          const horario = botao.previousElementSibling.textContent.replace('→ ', '');
          const card = botao.closest('.cards');
          const barbeiro = card.querySelector ('h3').textContent.replace(':', '');
