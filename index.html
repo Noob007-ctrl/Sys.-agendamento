@@ -146,6 +146,20 @@
         }
     }
 
+    let contadorId = 0;
+
+    function gerarId(){
+        contadorId++;
+        return contadorId.toString().padStart(4, "0");
+    }
+
+    class Cliente{
+        constructor (nome){
+            this.nome = nome
+            this.id = gerarId()
+        }
+    }
+
     const lucas = new Barbeiro("Lucas", ["seg", "ter"], ["10:30", "15:30", "19:00", "21:30"]);
     const valdir = new Barbeiro("Valdir", ["sex", "sab"], ["07:35", "12:45", "18:30", "20:30"]);
     const gabriel = new Barbeiro("Gabriel", ["sex", "sab"], ["08:30", "14:45", "18:30", "20:30"]);
@@ -190,14 +204,6 @@
         return false
     }
 
-    let contadorId = 0;
-
-    function gerarID(){
-
-        contadorId++;
-        return contadorID.toString().padStart(4, "0");
-    }
-
     botoes.forEach (botao =>{
         botao.addEventListener ('click', () => {
 
@@ -211,8 +217,11 @@
 
         if (clienteInseriuNome(nomeAtualCliente) && diaDaSemanaECorreto(diaDaSemana, barbeiroEscolhido))
         {
-            alert (`Agendamento confirmado ${nomeAtualCliente}! Seu horário com ${barbeiro} será às ${horario}, ${diaDaSemana}.`);
-            todosClientesAgendados.push(nomeAtualCliente);
+            const cliente = new Cliente(nomeAtualCliente);
+            todosClientesAgendados.push(cliente);
+
+            alert (`Agendamento confirmado ${cliente.nome}! Seu horário com ${barbeiro} será às ${horario}, ${diaDaSemana}. Seu código é: ${cliente.id}`);
+     
         }
         else
         {
