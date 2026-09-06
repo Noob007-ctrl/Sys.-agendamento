@@ -144,23 +144,21 @@
          const card = botao.closest('.cards');
          const barbeiro = card.querySelector ('h3').textContent.replace(':', '');
          const nomeCliente = prompt("Qual é o seu nome?");
-        
-         console.log(nomeCliente)
 
          if (nomeCliente === null || nomeCliente.trim() === "")
          {
-            alert(`Cliente não inseriu um nome`)
-            return
+            alert(`Cliente não inseriu um nome`);
+            return;
          }
          else
          {
             alert (`Agendamento confirmado ${nomeCliente}! Seu horário com ${barbeiro} será às ${horario}.`);
          }
 
-            botao.textContent = "Agendado!";
-             botao.disabled = true;
-             botao.style.backgroundColor = "#27ae60";
-             botao.style.cursor = "not-allowed";
+        botao.textContent = "Agendado!";
+        botao.disabled = true;
+        botao.style.backgroundColor = "#27ae60";
+        botao.style.cursor = "not-allowed";
 
         });   
     });
